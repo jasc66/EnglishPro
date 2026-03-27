@@ -344,13 +344,15 @@ section { padding: 100px 5%; }
 }
 .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(37,99,235,.12); }
 .form-group textarea { resize: vertical; min-height: 100px; }
+.form-actions { display: flex; flex-direction: column; gap: .75rem; }
 .form-submit {
   width: 100%; padding: .95rem; background: var(--blue); color: var(--white); border: none;
   border-radius: 50px; font-size: 1rem; font-weight: 700; cursor: pointer;
   transition: all .25s; font-family: inherit; box-shadow: 0 6px 18px rgba(37,99,235,.35);
 }
 .form-submit:hover { background: #1D4ED8; transform: translateY(-2px); }
-.form-submit:disabled { opacity: .7; cursor: not-allowed; transform: none; }
+.form-submit-email { background: var(--navy-light); box-shadow: 0 6px 18px rgba(0,0,0,.25); }
+.form-submit-email:hover { background: #1e3a5f; }
 .form-success {
   text-align: center; padding: 1.5rem;
   background: var(--green-light); border-radius: var(--radius); color: var(--green);

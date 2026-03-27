@@ -2,6 +2,7 @@
 import { useState } from 'react';
 
 const WHATSAPP_NUMBER = '50660120806';
+const TEACHER_EMAIL = 'jean_pierre_schmidt_calvo@hotmail.com';
 
 const perks = [
   {
@@ -34,7 +35,7 @@ export default function Contact() {
     setFields((prev) => ({ ...prev, [e.target.id]: e.target.value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleWhatsApp = (e) => {
     e.preventDefault();
     const msg =
       `Hola Jean Pierre, me interesa una clase diagnóstico gratuita. Estos son mis datos:%0A%0A` +
@@ -43,8 +44,21 @@ export default function Contact() {
       `🏢 *Sector:* ${fields.sector}%0A` +
       `📊 *Nivel:* ${fields.nivel}%0A` +
       `🎯 *Objetivo:* ${fields.objetivo}`;
-
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, '_blank');
+  };
+
+  const handleEmail = (e) => {
+    e.preventDefault();
+    const subject = encodeURIComponent('Consulta clase diagnóstico gratuita');
+    const body = encodeURIComponent(
+      `Hola Jean Pierre, me interesa una clase diagnóstico gratuita. Estos son mis datos:\n\n` +
+      `Nombre: ${fields.nombre}\n` +
+      `Email: ${fields.email}\n` +
+      `Sector: ${fields.sector}\n` +
+      `Nivel: ${fields.nivel}\n` +
+      `Objetivo: ${fields.objetivo}`
+    );
+    window.open(`mailto:${TEACHER_EMAIL}?subject=${subject}&body=${body}`, '_blank');
   };
 
   return (
@@ -89,7 +103,7 @@ export default function Contact() {
             Completa el formulario y se abrirá WhatsApp con tu consulta lista para enviar.
           </div>
 
-          <form onSubmit={handleSubmit}>
+          <form>
             <div className="form-row">
               <div className="form-group">
                 <label htmlFor="nombre">Nombre *</label>
@@ -155,9 +169,14 @@ export default function Contact() {
               />
             </div>
 
-            <button type="submit" className="form-submit">
-              📲 Enviar por WhatsApp →
-            </button>
+            <div className="form-actions">
+              <button type="button" className="form-submit" onClick={handleWhatsApp}>
+                📲 Enviar por WhatsApp
+              </button>
+              <button type="button" className="form-submit form-submit-email" onClick={handleEmail}>
+                ✉️ Enviar por Email
+              </button>
+            </div>
           </form>
         </div>
       </div>
