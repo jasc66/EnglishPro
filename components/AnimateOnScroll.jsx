@@ -1,11 +1,10 @@
 'use client';
 import { useEffect } from 'react';
+import { useLang } from '@/context/LangContext';
 
-/**
- * Mounts an IntersectionObserver that adds the 'visible' class to
- * any element with the 'fade-in' class, triggering the CSS animation.
- */
 export default function AnimateOnScroll() {
+  const { lang } = useLang();
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -18,11 +17,17 @@ export default function AnimateOnScroll() {
       { threshold: 0.1 }
     );
 
-    const els = document.querySelectorAll('.fade-in');
-    els.forEach((el) => observer.observe(el));
+    // Small delay so the new DOM elements are painted before observing
+    const timeout = setTimeout(() => {
+      const els = document.querySelectorAll('.fade-in');
+      els.forEach((el) => observer.observe(el));
+    }, 50);
 
-    return () => observer.disconnect();
-  }, []);
+    return () => {
+      clearTimeout(timeout);
+      observer.disconnect();
+    };
+  }, [lang]);
 
   return null;
 }
