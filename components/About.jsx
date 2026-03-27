@@ -2,7 +2,6 @@ import Image from 'next/image';
 
 const credentials = [
   'Hablante nativo de inglés',
-  'Certificación Cambridge CELTA',
   '10+ años formando profesionales en Costa Rica',
   'Experiencia con empresas multinacionales',
   'Especialización en 12 sectores profesionales',
