@@ -1,3 +1,6 @@
+'use client';
+import { LangProvider, useLang } from '@/context/LangContext';
+import t from '@/lib/translations';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import TrustBar from '@/components/TrustBar';
@@ -11,9 +14,18 @@ import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import AnimateOnScroll from '@/components/AnimateOnScroll';
 
+function FloatingCta() {
+  const { lang } = useLang();
+  return (
+    <a href="#contact" className="floating-cta">
+      {t[lang].floatingCta}
+    </a>
+  );
+}
+
 export default function HomePage() {
   return (
-    <>
+    <LangProvider>
       <AnimateOnScroll />
       <Navbar />
       <main>
@@ -28,11 +40,7 @@ export default function HomePage() {
         <Contact />
       </main>
       <Footer />
-
-      {/* Floating CTA */}
-      <a href="#contact" className="floating-cta">
-        ✨ Clase gratis
-      </a>
-    </>
+      <FloatingCta />
+    </LangProvider>
   );
 }

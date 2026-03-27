@@ -1,14 +1,12 @@
+'use client';
 import Image from 'next/image';
-
-const credentials = [
-  'Hablante nativo de inglés',
-  '10+ años formando profesionales en Costa Rica',
-  'Experiencia con empresas multinacionales',
-  'Especialización en 12 sectores profesionales',
-  'Metodología comunicativa 100% en inglés',
-];
+import { useLang } from '@/context/LangContext';
+import t from '@/lib/translations';
 
 export default function About() {
+  const { lang } = useLang();
+  const tx = t[lang].about;
+
   return (
     <section id="about">
       <div className="about-grid">
@@ -17,31 +15,27 @@ export default function About() {
           <div className="about-img-wrapper">
             <Image
               src="/jeanpierre.jpeg"
-              alt="Jean Pierre Schmidt Calvo — Profesor nativo de inglés"
+              alt="Jean Pierre Schmidt Calvo — Native English teacher"
               fill
               style={{ objectFit: 'cover', objectPosition: 'top' }}
               sizes="(max-width: 768px) 280px, 420px"
               priority
             />
-            <div className="about-badge">⭐ 4.9 / 5.0 · 500+ alumnos</div>
+            <div className="about-badge">{tx.badge}</div>
           </div>
-          <div className="about-floating fl1">🎓 Cambridge CELTA</div>
-          <div className="about-floating fl2">🌍 Nativo de inglés</div>
+          <div className="about-floating fl1">{tx.floating1}</div>
+          <div className="about-floating fl2">{tx.floating2}</div>
         </div>
 
         {/* Text */}
         <div className="about-text">
-          <div className="about-tag">Sobre el profesor</div>
+          <div className="about-tag">{tx.tag}</div>
           <h2 className="about-title">
-            Jean Pierre Schmidt Calvo,<br />hablante nativo de inglés
+            {tx.title[0]}<br />{tx.title[1]}
           </h2>
-          <p className="about-desc">
-            Como hablante nativo de inglés con más de 10 años formando profesionales en Costa Rica,
-            te enseño el inglés real que se usa en tu sector: el acento, el ritmo, las expresiones
-            idiomáticas y la confianza que solo un nativo puede transmitir.
-          </p>
+          <p className="about-desc">{tx.desc}</p>
           <div className="credentials-list">
-            {credentials.map((c) => (
+            {tx.credentials.map((c) => (
               <div className="cred-item" key={c}>
                 <div className="cred-check">✓</div>
                 <div className="cred-text">{c}</div>
@@ -50,7 +44,7 @@ export default function About() {
           </div>
           <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center' }}>
             <a href="#contact" className="btn-primary" style={{ display: 'inline-flex' }}>
-              Reservar clase diagnóstico →
+              {tx.cta}
             </a>
             <a
               href="https://www.linkedin.com/in/jean-pierre-s-0094a034/"
@@ -58,7 +52,7 @@ export default function About() {
               rel="noopener noreferrer"
               className="about-linkedin"
             >
-              Ver perfil en LinkedIn →
+              {tx.linkedin}
             </a>
           </div>
         </div>

@@ -48,6 +48,10 @@ nav.scrolled { box-shadow: var(--shadow-md); }
 .nav-links a:hover { color: var(--blue); }
 .nav-cta { background: var(--blue); color: var(--white); padding: .55rem 1.3rem; border-radius: 50px; font-size: .88rem; font-weight: 600; text-decoration: none; transition: all .2s; box-shadow: 0 4px 14px rgba(37,99,235,.3); }
 .nav-cta:hover { background: #1D4ED8; transform: translateY(-1px); }
+.nav-right { display: flex; align-items: center; gap: .75rem; }
+.lang-toggle { background: transparent; border: 1.5px solid var(--gray-200); color: var(--gray-600); padding: .4rem .9rem; border-radius: 50px; font-size: .82rem; font-weight: 600; cursor: pointer; transition: all .2s; font-family: inherit; }
+.lang-toggle:hover { border-color: var(--blue); color: var(--blue); }
+.lang-toggle-mobile { width: 100%; text-align: center; margin-top: .5rem; padding: .7rem; border-radius: 50px; }
 .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
 .hamburger span { width: 24px; height: 2px; background: var(--navy); border-radius: 2px; display: block; transition: .3s; }
 .mobile-menu { display: none; }

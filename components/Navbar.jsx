@@ -1,17 +1,12 @@
 'use client';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-
-const links = [
-  { href: '#sectors', label: 'Sectores' },
-  { href: '#how', label: 'Metodología' },
-  { href: '#about', label: 'Sobre mí' },
-  { href: '#testimonials', label: 'Testimonios' },
-  { href: '#pricing', label: 'Precios' },
-  { href: '#faq', label: 'FAQ' },
-];
+import { useLang } from '@/context/LangContext';
+import t from '@/lib/translations';
 
 export default function Navbar() {
+  const { lang, toggle } = useLang();
+  const tx = t[lang].nav;
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -31,16 +26,21 @@ export default function Navbar() {
         </Link>
 
         <ul className="nav-links">
-          {links.map((l) => (
+          {tx.links.map((l) => (
             <li key={l.href}>
               <a href={l.href}>{l.label}</a>
             </li>
           ))}
         </ul>
 
-        <a href="#contact" className="nav-cta">
-          Clase Gratis →
-        </a>
+        <div className="nav-right">
+          <button className="lang-toggle" onClick={toggle} aria-label="Switch language">
+            {lang === 'es' ? '🇺🇸 EN' : '🇨🇷 ES'}
+          </button>
+          <a href="#contact" className="nav-cta">
+            {tx.cta}
+          </a>
+        </div>
 
         <button
           className="hamburger"
@@ -55,14 +55,17 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       <div className={`mobile-menu${menuOpen ? ' open' : ''}`}>
-        {links.map((l) => (
+        {tx.links.map((l) => (
           <a key={l.href} href={l.href} onClick={closeMenu}>
             {l.label}
           </a>
         ))}
         <a href="#contact" className="nav-cta" onClick={closeMenu}>
-          Clase Gratis →
+          {tx.cta}
         </a>
+        <button className="lang-toggle lang-toggle-mobile" onClick={() => { toggle(); closeMenu(); }}>
+          {lang === 'es' ? '🇺🇸 Switch to English' : '🇨🇷 Cambiar a Español'}
+        </button>
       </div>
     </>
   );

@@ -1,12 +1,11 @@
-const items = [
-  { icon: '🌍', text: 'Profesor nativo de inglés' },
-  { icon: '🎓', text: 'Certificado Cambridge CELTA' },
-  { icon: '🌐', text: 'Clases online o presencial' },
-  { icon: '⏱', text: 'Horarios flexibles' },
-  { icon: '🔒', text: 'Sin permanencia mínima' },
-];
+'use client';
+import { useLang } from '@/context/LangContext';
+import t from '@/lib/translations';
 
 export default function TrustBar() {
+  const { lang } = useLang();
+  const items = t[lang].trust;
+
   return (
     <div id="trust">
       {items.map((item) => (
